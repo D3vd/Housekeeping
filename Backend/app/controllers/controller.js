@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+const moment = require('moment');
 
 var Asset = require('../models/asset');
 var Task = require('../models/task');
@@ -68,7 +69,7 @@ exports.addWorker = function(req, res, next) {
   });
 };
 
-exports.getAssets = async function(req, res, next) {
+exports.getAssets = function(req, res, next) {
   Asset.find({}, function(err, assets) {
     let assetsList = [];
 
@@ -81,5 +82,25 @@ exports.getAssets = async function(req, res, next) {
       assets: assetsList,
       responseType: 200
     });
+  });
+};
+
+exports.allocateTask = function(req, res, next) {
+  // TODO: Error handling in case of invalid credentials
+
+  var activeTask = {
+    assetId: req.body.assetId,
+    taskId: req.body.taskId,
+    workerId: req.body.workerId,
+    timeOfAllocation: req.body.timeOfAllocation,
+    taskToBePerformedBy: req.body.taskToBePerformedBy
+  };
+
+  var activeTask = new ActiveTask(activeTaskJSON);
+  activeTask.save();
+
+  return res.status(200).send({
+    activeTask,
+    responseType: 200
   });
 };
