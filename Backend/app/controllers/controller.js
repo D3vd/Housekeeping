@@ -37,7 +37,7 @@ exports.addTask = function(req, res, next) {
   }
 
   var taskJSON = {
-    assetId: uuid.v4(),
+    taskId: uuid.v4(),
     name: req.body.name,
     assetId: req.body.assetId,
     frequency: req.body.frequency
@@ -48,6 +48,22 @@ exports.addTask = function(req, res, next) {
 
   return res.status(200).send({
     task,
+    responseType: 200
+  });
+};
+
+exports.addWorker = function(req, res, next) {
+  var workerJSON = {
+    workerId: uuid.v4(),
+    name: req.body.name,
+    task: []
+  };
+
+  var worker = new Worker(workerJSON);
+  worker.save();
+
+  return res.status(200).send({
+    worker,
     responseType: 200
   });
 };
