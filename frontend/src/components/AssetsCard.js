@@ -48,7 +48,6 @@ export class AssetsCard extends Component {
   };
 
   handleCancel = e => {
-    console.log('cancel');
     this.setState({
       visible: false
     });
