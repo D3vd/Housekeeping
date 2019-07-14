@@ -57,6 +57,7 @@ exports.addWorker = function(req, res, next) {
   var workerJSON = {
     workerId: uuid.v4(),
     name: req.body.name,
+    username: req.body.username,
     task: []
   };
 
@@ -103,4 +104,18 @@ exports.allocateTask = function(req, res, next) {
     activeTask,
     responseType: 200
   });
+};
+
+exports.getTasksForWorker = function(req, res, next) {
+  Worker.findOne(
+    {
+      workerId: req.params.id
+    },
+    (err, worker) => {
+      return res.status(200).send({
+        worker,
+        responseType: 200
+      });
+    }
+  );
 };

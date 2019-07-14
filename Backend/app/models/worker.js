@@ -11,6 +11,7 @@ var activeTaskJSON = {
 var workerJSON = {
   workerId: String,
   name: String,
+  username: String,
   tasks: [activeTaskJSON]
 };
 
