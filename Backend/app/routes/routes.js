@@ -2,7 +2,7 @@ const controller = require('../controllers/controller');
 
 module.exports = app => {
   app.post('/add-asset', controller.addAsset);
-  // app.post('/add-task', controller);
+  app.post('/add-task', controller.addTask);
   // app.post('/add-worker', controller);
   // app.get('/assets-all', controller);
   // app.post('/allocate-task', controller);
