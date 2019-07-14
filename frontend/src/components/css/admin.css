@@ -20,3 +20,13 @@
 * {
   font-family: 'Nunito', sans-serif;
 }
+
+@media only screen and (max-width: 768px) {
+  .adminContainer {
+    height: auto;
+  }
+
+  .adminContainer h1 {
+    font-size: 40px;
+  }
+}

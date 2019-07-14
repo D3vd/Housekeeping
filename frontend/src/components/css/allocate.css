@@ -20,3 +20,9 @@
   cursor: pointer;
   transform: scale(1.05);
 }
+
+@media only screen and (max-width: 768px) {
+  .allocateBtn {
+    margin-bottom: 0;
+  }
+}
