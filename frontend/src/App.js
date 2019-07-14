@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import 'antd/dist/antd.css';
+import './index.css';
 
 import SignIn from './components/SignIn';
 import Home from './components/Home';

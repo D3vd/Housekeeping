@@ -5,13 +5,14 @@ import './css/admin.css';
 import AssetsCard from './AssetsCard';
 import TaskCard from './TaskCard';
 import WorkerCard from './WorkerCard';
+import AllocateTask from './AllocateTask';
 
 export class Admin extends Component {
   render() {
     return (
       <div className="adminContainer">
         <h1>Hello, Admin!</h1>
-        <Row>
+        <Row className="mainCards">
           <Col lg={8}>
             <AssetsCard />
           </Col>
@@ -22,6 +23,7 @@ export class Admin extends Component {
             <WorkerCard />
           </Col>
         </Row>
+        <AllocateTask />
       </div>
     );
   }

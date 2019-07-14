@@ -139,7 +139,7 @@ exports.getWorkers = function(req, res, next) {
 exports.allocateTask = function(req, res, next) {
   // TODO: Error handling in case of invalid credentials
 
-  var activeTask = {
+  var activeTaskJSON = {
     assetId: req.body.assetId,
     taskId: req.body.taskId,
     workerId: req.body.workerId,
@@ -150,10 +150,25 @@ exports.allocateTask = function(req, res, next) {
   var activeTask = new ActiveTask(activeTaskJSON);
   activeTask.save();
 
-  return res.status(200).send({
-    activeTask,
-    responseType: 200
-  });
+  Worker.findOne(
+    {
+      workerId: req.body.workerId
+    },
+    (err, worker) => {
+      let newWorker = worker;
+
+      newWorker.tasks.push(activeTaskJSON);
+
+      console.log(newWorker);
+      var newWorkerObj = new Worker(newWorker);
+      newWorkerObj.save();
+
+      return res.status(200).send({
+        activeTask,
+        responseType: 200
+      });
+    }
+  );
 };
 
 exports.getTasksForWorker = function(req, res, next) {
