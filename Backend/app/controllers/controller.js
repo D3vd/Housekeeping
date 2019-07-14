@@ -1,5 +1,4 @@
 const uuid = require('uuid');
-const moment = require('moment');
 
 var Asset = require('../models/asset');
 var Task = require('../models/task');
@@ -58,6 +57,7 @@ exports.addWorker = function(req, res, next) {
     workerId: uuid.v4(),
     name: req.body.name,
     username: req.body.username,
+    password: req.body.password,
     task: []
   };
 
