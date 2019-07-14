@@ -121,6 +121,21 @@ exports.getTasks = function(req, res, next) {
   });
 };
 
+exports.getWorkers = function(req, res, next) {
+  Worker.find({}, function(err, workers) {
+    let workerList = [];
+
+    workers.forEach(worker => {
+      workerList.push(worker);
+    });
+
+    return res.status(200).send({
+      worker: workerList,
+      responseType: 200
+    });
+  });
+};
+
 exports.allocateTask = function(req, res, next) {
   // TODO: Error handling in case of invalid credentials
 
