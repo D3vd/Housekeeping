@@ -4,7 +4,7 @@ var userJSON = {
   userID: String,
   username: String,
   password: String,
-  class: String
+  admin: Boolean
 };
 
 var userSchema = new mongoose.Schema(userJSON, {

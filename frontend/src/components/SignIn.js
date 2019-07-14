@@ -19,7 +19,7 @@ export class SignIn extends Component {
         password
       })
       .then(res => {
-        this.props.changeSignIn(res.data.login, res.data.class);
+        this.props.changeSignIn(res.data.login, res.data.admin);
       });
   };
 

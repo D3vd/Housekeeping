@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 
 import SignIn from './components/SignIn';
-
-// import Home from './components/Home';
+import Home from './components/Home';
 
 export class App extends Component {
   state = {
@@ -23,7 +22,7 @@ export class App extends Component {
     return (
       <div>
         {this.state.signedIn ? (
-          <h1>Hello</h1>
+          <Home admin={this.state.admin} />
         ) : (
           <SignIn changeSignIn={this.changeSignIn} />
         )}

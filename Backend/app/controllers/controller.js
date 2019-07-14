@@ -140,12 +140,12 @@ exports.login = function(req, res, next) {
       if (user.password === req.body.password) {
         return res.status(200).send({
           login: true,
-          class: user.class
+          admin: user.admin
         });
       } else {
         return res.status(200).send({
           login: false,
-          class: user.class
+          admin: user.admin
         });
       }
     }
