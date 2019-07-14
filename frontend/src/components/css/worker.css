@@ -1,0 +1,11 @@
+.workerContainer {
+  min-height: 100vh;
+  background-color: #1c1c1c;
+}
+
+.workerContainer h1 {
+  color: white;
+  font-size: 60px;
+  padding: 30px;
+  padding-bottom: 0;
+}

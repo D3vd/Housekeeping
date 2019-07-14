@@ -72,7 +72,7 @@ exports.addWorker = function(req, res, next) {
   };
 
   var userJSON = {
-    user: id,
+    userID: id,
     username: req.body.username,
     password: req.body.password,
     admin: false
@@ -191,10 +191,12 @@ exports.login = function(req, res, next) {
       username: req.body.username
     },
     (err, user) => {
+      console.log(user);
       if (user.password === req.body.password) {
         return res.status(200).send({
           login: true,
-          admin: user.admin
+          admin: user.admin,
+          id: user.userID
         });
       } else {
         return res.status(200).send({

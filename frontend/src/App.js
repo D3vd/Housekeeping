@@ -8,14 +8,16 @@ import Home from './components/Home';
 
 export class App extends Component {
   state = {
-    signedIn: true,
-    admin: true
+    signedIn: false,
+    admin: false,
+    userId: ''
   };
 
-  changeSignIn = (loggedIn, admin) => {
+  changeSignIn = (loggedIn, admin, id) => {
     this.setState({
       signedIn: loggedIn,
-      admin: admin
+      admin: admin,
+      userId: id
     });
   };
 
@@ -23,7 +25,7 @@ export class App extends Component {
     return (
       <div>
         {this.state.signedIn ? (
-          <Home admin={this.state.admin} />
+          <Home admin={this.state.admin} id={this.state.userId} />
         ) : (
           <SignIn changeSignIn={this.changeSignIn} />
         )}
