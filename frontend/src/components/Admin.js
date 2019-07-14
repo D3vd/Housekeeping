@@ -4,6 +4,7 @@ import { Row, Col } from 'antd';
 import './css/admin.css';
 import AssetsCard from './AssetsCard';
 import TaskCard from './TaskCard';
+import WorkerCard from './WorkerCard';
 
 export class Admin extends Component {
   render() {
@@ -18,7 +19,7 @@ export class Admin extends Component {
             <TaskCard />
           </Col>
           <Col lg={8}>
-            <AssetsCard />
+            <WorkerCard />
           </Col>
         </Row>
       </div>
