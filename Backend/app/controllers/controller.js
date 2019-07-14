@@ -66,7 +66,7 @@ exports.addWorker = function(req, res, next) {
     user: id,
     username: req.body.username,
     password: req.body.password,
-    class: 'Worker'
+    admin: false
   };
 
   var worker = new Worker(workerJSON);
@@ -127,6 +127,27 @@ exports.getTasksForWorker = function(req, res, next) {
         worker,
         responseType: 200
       });
+    }
+  );
+};
+
+exports.login = function(req, res, next) {
+  User.findOne(
+    {
+      username: req.body.username
+    },
+    (err, user) => {
+      if (user.password === req.body.password) {
+        return res.status(200).send({
+          login: true,
+          class: user.class
+        });
+      } else {
+        return res.status(200).send({
+          login: false,
+          class: user.class
+        });
+      }
     }
   );
 };

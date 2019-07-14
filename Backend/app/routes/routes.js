@@ -7,4 +7,5 @@ module.exports = app => {
   app.get('/assets-all', controller.getAssets);
   app.post('/allocate-task', controller.allocateTask);
   app.get('/get-tasks-for-worker/:id', controller.getTasksForWorker);
+  app.post('/login', controller.login);
 };

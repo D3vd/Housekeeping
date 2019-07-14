@@ -11,4 +11,4 @@ var userSchema = new mongoose.Schema(userJSON, {
   timestamps: true
 });
 
-module.exports = mongoose.model('Asset', userSchema);
+module.exports = mongoose.model('User', userSchema);
