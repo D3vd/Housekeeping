@@ -67,3 +67,19 @@ exports.addWorker = function(req, res, next) {
     responseType: 200
   });
 };
+
+exports.getAssets = async function(req, res, next) {
+  Asset.find({}, function(err, assets) {
+    let assetsList = [];
+
+    assets.forEach(asset => {
+      console.log(asset);
+      assetsList.push(asset);
+    });
+
+    return res.status(200).send({
+      assets: assetsList,
+      responseType: 200
+    });
+  });
+};
