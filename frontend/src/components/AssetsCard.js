@@ -26,23 +26,25 @@ export class AssetsCard extends Component {
   };
 
   handleOk = e => {
-    axios
-      .post('http://localhost:8080/add-asset', {
-        name: this.state.newAsset
-      })
-      .then(res => {
-        let assets = this.state.assets;
-        assets.push({
+    if (this.state.newAsset !== '') {
+      axios
+        .post('http://localhost:8080/add-asset', {
           name: this.state.newAsset
+        })
+        .then(res => {
+          let assets = this.state.assets;
+          assets.push({
+            name: this.state.newAsset
+          });
+          this.setState({
+            assets,
+            newAsset: ''
+          });
         });
-        this.setState({
-          assets,
-          newAsset: ''
-        });
+      this.setState({
+        visible: false
       });
-    this.setState({
-      visible: false
-    });
+    }
   };
 
   handleCancel = e => {

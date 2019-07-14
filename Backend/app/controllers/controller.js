@@ -23,34 +23,43 @@ exports.addAsset = function(req, res, next) {
 
 exports.addTask = function(req, res, next) {
   let assetId = req.body.assetId;
+  let assetName = '';
 
-  var asset = Asset.findOne({
-    assetId
-  });
+  var asset = Asset.findOne(
+    {
+      assetId
+    },
+    (err, asset) => {
+      assetName = asset.name;
+
+      var taskJSON = {
+        taskId: uuid.v4(),
+        name: req.body.name,
+        assetId: req.body.assetId,
+        asset: assetName,
+        frequency: req.body.frequency
+      };
+
+      var task = new Task(taskJSON);
+      task.save();
+
+      return res.status(200).send({
+        task,
+        responseType: 200
+      });
+    }
+  );
 
   // TODO: Fix wrong asset ID
 
-  if (asset === null) {
-    return res.status(400).json({
-      responseType: 400,
-      msg: `Bad Request: No asset found with ID -- ${assetId}`
-    });
-  }
+  // if (assetName === '') {
+  //   return res.status(400).json({
+  //     responseType: 400,
+  //     msg: `Bad Request: No asset found with ID -- ${assetId}`
+  //   });
+  // }
 
-  var taskJSON = {
-    taskId: uuid.v4(),
-    name: req.body.name,
-    assetId: req.body.assetId,
-    frequency: req.body.frequency
-  };
-
-  var task = new Task(taskJSON);
-  task.save();
-
-  return res.status(200).send({
-    task,
-    responseType: 200
-  });
+  console.log(asset);
 };
 
 exports.addWorker = function(req, res, next) {
@@ -92,6 +101,21 @@ exports.getAssets = function(req, res, next) {
 
     return res.status(200).send({
       assets: assetsList,
+      responseType: 200
+    });
+  });
+};
+
+exports.getTasks = function(req, res, next) {
+  Task.find({}, function(err, tasks) {
+    let tasksList = [];
+
+    tasks.forEach(task => {
+      tasksList.push(task);
+    });
+
+    return res.status(200).send({
+      task: tasksList,
       responseType: 200
     });
   });

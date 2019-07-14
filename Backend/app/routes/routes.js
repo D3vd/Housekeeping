@@ -5,6 +5,7 @@ module.exports = app => {
   app.post('/add-task', controller.addTask);
   app.post('/add-worker', controller.addWorker);
   app.get('/assets-all', controller.getAssets);
+  app.get('/tasks-all', controller.getTasks);
   app.post('/allocate-task', controller.allocateTask);
   app.get('/get-tasks-for-worker/:id', controller.getTasksForWorker);
   app.post('/login', controller.login);

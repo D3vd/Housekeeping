@@ -4,6 +4,7 @@ var taskJSON = {
   taskId: String,
   name: String,
   assetId: String,
+  asset: String,
   frequency: String
 };
 
