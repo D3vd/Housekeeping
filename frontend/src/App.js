@@ -7,8 +7,8 @@ import Home from './components/Home';
 
 export class App extends Component {
   state = {
-    signedIn: false,
-    admin: false
+    signedIn: true,
+    admin: true
   };
 
   changeSignIn = (loggedIn, admin) => {

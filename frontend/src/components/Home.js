@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import Admin from './Admin';
-import User from './User';
+import Worker from './Worker';
 
 export class Home extends Component {
   render() {
-    return <div>{this.props.admin ? <Admin /> : <User />}</div>;
+    return <div>{this.props.admin ? <Admin /> : <Worker />}</div>;
   }
 }
 
