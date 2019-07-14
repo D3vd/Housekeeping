@@ -4,6 +4,7 @@ var Asset = require('../models/asset');
 var Task = require('../models/task');
 var Worker = require('../models/worker');
 var ActiveTask = require('../models/activeTask');
+var User = require('../models/user');
 
 exports.addAsset = function(req, res, next) {
   var assetJSON = {
@@ -53,16 +54,26 @@ exports.addTask = function(req, res, next) {
 };
 
 exports.addWorker = function(req, res, next) {
+  let id = uuid.v4();
+
   var workerJSON = {
-    workerId: uuid.v4(),
+    workerId: id,
     name: req.body.name,
+    task: []
+  };
+
+  var userJSON = {
+    user: id,
     username: req.body.username,
     password: req.body.password,
-    task: []
+    class: 'Worker'
   };
 
   var worker = new Worker(workerJSON);
   worker.save();
+
+  var user = new User(userJSON);
+  user.save();
 
   return res.status(200).send({
     worker,
