@@ -2,8 +2,7 @@
 
 
 
-The application will hosted on `housekeepers.ml`
-
+Created as a submission for Udaan Software Engineer Hiring process
 
 
 This application is built using the MERN Stack:
